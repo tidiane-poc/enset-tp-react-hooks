@@ -96,7 +96,10 @@ _Votre réponse pour l'exercice 4 :_
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```
+### Pagination
 ![pagination](public/images/pagination.png)
+### Pagination et Query
+![pagination et query](public/images/pagination_et_query.png)
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
