@@ -7,34 +7,57 @@ const useProductSearch = (query) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // TODO: Exercice 4.2 - Ajouter l'état pour la pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [limit, _] = useState(6);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        // TODO: Exercice 4.2 - Modifier l'URL pour inclure les paramètres de pagination
-        const querySearch = query ? `/search?q=${query}` : '';
-        const response = await fetch(`https://api.daaif.net/products${querySearch}`);
-        if (!response.ok) throw new Error('Erreur réseau');
-        const data = await response.json();
-        setProducts(data.products);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
+    const querySearch = query ? `/search?q=${query}&skip=${0}&limit=${limit}` : `?skip=${0}&limit=${limit}`;
+    fetchProducts(querySearch);
+  }, [query]);
 
-    fetchProducts();
-  }, [query]); // TODO: Exercice 4.2 - Ajouter les dépendances pour la pagination
+  useEffect(() => {
+    const querySearch = query ? `/search?q=${query}&skip=${currentPage}&limit=${limit}` : `?skip=${currentPage}&limit=${limit}`;
+    fetchProducts(querySearch);
+  }, [currentPage]);
 
+  const fetchProducts = async (querySearch) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://api.daaif.net/products${querySearch}`);
+      if (!response.ok) throw new Error('Erreur réseau');
+      const data = await response.json();
+      setProducts(data.products);
+      setCurrentPage(data.skip);
+      setTotalPages(Math.ceil(data.total / limit));
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  }
   // TODO: Exercice 4.1 - Ajouter la fonction de rechargement
   // TODO: Exercice 4.2 - Ajouter les fonctions pour la pagination
 
+  const nextPage = () => {
+    if ((currentPage + 1) < totalPages)
+      setCurrentPage(currentPage + 1);
+  }
+  const previousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }else {
+      setCurrentPage(0)
+    }
+  }
   return { 
     products, 
     loading, 
     error,
+    currentPage,
+    totalPages,
+    nextPage,
+    previousPage
     // TODO: Exercice 4.1 - Retourner la fonction de rechargement
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
   };

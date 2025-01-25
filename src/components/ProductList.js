@@ -10,9 +10,14 @@ const ProductList = ({query}) => {
     products, 
     loading, 
     error,
+      currentPage,
+      totalPages,
+    nextPage,
+      previousPage
     // TODO: Exercice 4.1 - Récupérer la fonction de rechargement
     // TODO: Exercice 4.2 - Récupérer les fonctions et états de pagination
   } = useProductSearch(query);
+
 
 
   if (loading) return (
@@ -58,7 +63,7 @@ const ProductList = ({query}) => {
       </div>
       
       {/* TODO: Exercice 4.2 - Ajouter les contrôles de pagination */}
-      {/* Exemple de structure pour la pagination :
+       Exemple de structure pour la pagination :
       <nav className="mt-4">
         <ul className="pagination justify-content-center">
           <li className="page-item">
@@ -68,7 +73,7 @@ const ProductList = ({query}) => {
           </li>
           <li className="page-item">
             <span className="page-link">
-              Page {currentPage} sur {totalPages}
+              Page {(currentPage + 1)} sur {totalPages}
             </span>
           </li>
           <li className="page-item">
@@ -78,7 +83,7 @@ const ProductList = ({query}) => {
           </li>
         </ul>
       </nav>
-      */}
+
     </div>
   );
 };

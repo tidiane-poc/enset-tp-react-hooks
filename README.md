@@ -53,9 +53,10 @@ Pour chaque exercice :
 
 _Votre réponse pour l'exercice 1 :_
 ```
-Expliquez votre solution ici
-[Ajoutez vos captures d'écran]
+
 ```
+### Recherche en temps réel
+![capture de recherche](public/images/recherche.png)
 
 ### Exercice 2 : Context et Internationalisation
 #### Objectif : Gérer les préférences de langue
@@ -95,7 +96,7 @@ _Votre réponse pour l'exercice 4 :_
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```
-
+![pagination](public/images/pagination.png)
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
