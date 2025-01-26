@@ -16,12 +16,12 @@ const useProductSearch = (query) => {
   useEffect(() => {
     const querySearch = query ? `/search?q=${query}&skip=${0}&limit=${limit}&lang=${lang}` : `?skip=${0}&limit=${limit}&lang=${lang}`;
     fetchProducts(querySearch);
-  }, [query]);
+  }, [query, lang]);
 
   useEffect(() => {
     const querySearch = query ? `/search?q=${query}&skip=${currentPage}&limit=${limit}&lang=${lang}` : `?skip=${currentPage}&limit=${limit}&lang=${lang}`;
     fetchProducts(querySearch);
-  }, [currentPage]);
+  }, [currentPage, lang]);
 
 
   const fetchProducts = async (querySearch) => {
@@ -53,6 +53,10 @@ const useProductSearch = (query) => {
       setCurrentPage(0)
     }
   }
+  const  onRefresh = () => {
+    fetchProducts(`?skip=${currentPage}&limit=${limit}&lang=${lang}`);
+
+  }
   return { 
     products, 
     loading, 
@@ -60,7 +64,8 @@ const useProductSearch = (query) => {
     currentPage,
     totalPages,
     nextPage,
-    previousPage
+    previousPage,
+    onRefresh
     // TODO: Exercice 4.1 - Retourner la fonction de rechargement
     // TODO: Exercice 4.2 - Retourner les fonctions et états de pagination
   };
