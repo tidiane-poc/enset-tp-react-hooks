@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from '../App';
+import {LanguageContext, ThemeContext} from '../App';
 import useProductSearch from '../hooks/useProductSearch';
 
 const ProductList = ({query}) => {
   const { isDarkTheme } = useContext(ThemeContext);
+  const { lang } = useContext(LanguageContext);
+  const btnClassName = isDarkTheme ? 'bg-dark text-light border border-light' : 'bg-light text-dark border border-dark';
+
   // TODO: Exercice 2.1 - Utiliser le LanguageContext pour les traductions
 
   const {
@@ -67,17 +70,17 @@ const ProductList = ({query}) => {
       <nav className="mt-4">
         <ul className="pagination justify-content-center">
           <li className="page-item">
-            <button className="page-link" onClick={previousPage}>
+            <button className={`page-link ${btnClassName}`} onClick={previousPage}>
               Précédent
             </button>
           </li>
           <li className="page-item">
-            <span className="page-link">
+            <span className={`page-link ${btnClassName}`}>
               Page {(currentPage + 1)} sur {totalPages}
             </span>
           </li>
           <li className="page-item">
-            <button className="page-link" onClick={nextPage}>
+            <button className={`page-link ${btnClassName}`} onClick={nextPage}>
               Suivant
             </button>
           </li>

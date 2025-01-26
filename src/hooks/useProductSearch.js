@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useContext} from 'react';
+import {LanguageContext} from "../App";
 
 // TODO: Exercice 3.1 - Créer le hook useDebounce
 // TODO: Exercice 3.2 - Créer le hook useLocalStorage
@@ -10,16 +11,18 @@ const useProductSearch = (query) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [limit, _] = useState(6);
+  const { lang } = useContext(LanguageContext);
 
   useEffect(() => {
-    const querySearch = query ? `/search?q=${query}&skip=${0}&limit=${limit}` : `?skip=${0}&limit=${limit}`;
+    const querySearch = query ? `/search?q=${query}&skip=${0}&limit=${limit}&lang=${lang}` : `?skip=${0}&limit=${limit}&lang=${lang}`;
     fetchProducts(querySearch);
   }, [query]);
 
   useEffect(() => {
-    const querySearch = query ? `/search?q=${query}&skip=${currentPage}&limit=${limit}` : `?skip=${currentPage}&limit=${limit}`;
+    const querySearch = query ? `/search?q=${query}&skip=${currentPage}&limit=${limit}&lang=${lang}` : `?skip=${currentPage}&limit=${limit}&lang=${lang}`;
     fetchProducts(querySearch);
   }, [currentPage]);
+
 
   const fetchProducts = async (querySearch) => {
     setLoading(true);
