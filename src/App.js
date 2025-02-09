@@ -3,11 +3,11 @@ import ProductList from './components/ProductList';
 import ProductSearch from './components/ProductSearch';
 import ThemeToggle from './components/ThemeToggle';
 import LanguageSelector from "./components/LanguageSelector";
-
+import fr from './lang/fr.json';
+import en from './lang/en.json';
+import {LanguageContext, ThemeContext} from "./context";
+import Translate from "./components/Translate";
 // TODO: Exercice 2.1 - Créer le LanguageContext
-
-export const ThemeContext = createContext();
-export const LanguageContext = createContext();
 
 const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -18,10 +18,12 @@ const App = () => {
   return (
     <ThemeContext.Provider value={{ isDarkTheme, setIsDarkTheme }}>
       {/* TODO: Exercice 2.1 - Wrapper avec LanguageContext.Provider */}
-      <LanguageContext.Provider value={{ lang, setLang }}>
+      <LanguageContext.Provider  value={{lang, setLang, en, fr}}>
       <div className={`container ${isDarkTheme ? 'bg-dark text-light' : 'bg-light'}`}>
         <header className="my-4">
-          <h1 className="text-center">Catalogue de Produits</h1>
+          <h1 className="text-center">
+            <Translate msg="HEADER_TITLE" />
+          </h1>
           <div className="d-flex justify-content-end gap-2">
             <ThemeToggle />
             <LanguageSelector/>
