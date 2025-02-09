@@ -6,6 +6,7 @@
   "PRICE": "Price",
   "OF": "of",
   "NEXT": "Next",
-  "PREVIEW": "Preview",
-  "REFRESH": "Refresh"
+  "PREVIOUS": "Previous",
+  "REFRESH": "Refresh",
+  "SEARCH_PLACEHOLDER": "Search a product..."
 }

@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import useDebounce from "../hooks/useDebounce";
 import {ThemeContext} from "../context";
+import useTranslate from "../hooks/useTranslate";
 
 const ProductSearch = ({onSearch}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { isDarkTheme } = useContext(ThemeContext);
   const {debounce}  = useDebounce(100);
-  // TODO: Exercice 2.1 - Utiliser le LanguageContext
+  const {translate} = useTranslate();
 
 
     const onInputChange = (value) => {
@@ -22,7 +23,7 @@ const ProductSearch = ({onSearch}) => {
         type="text"
         value={searchTerm}
         onChange={(e) => debounce(e.target.value, (value) => onInputChange(value))}
-        placeholder="Rechercher un produit..."
+        placeholder={translate("SEARCH_PLACEHOLDER")}
         className={`form-control ${isDarkTheme ? 'bg-dark text-light' : ''}`}
       />
     </div>
