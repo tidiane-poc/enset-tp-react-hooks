@@ -1,4 +1,4 @@
-import {LanguageContext, ThemeContext} from "../App";
+import {LanguageContext, ThemeContext} from "../context";
 import {useContext} from "react";
 
 const LanguageSelector = () => {

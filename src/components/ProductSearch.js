@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../App';
 import useDebounce from "../hooks/useDebounce";
+import {ThemeContext} from "../context";
 
 const ProductSearch = ({onSearch}) => {
   const [searchTerm, setSearchTerm] = useState('');

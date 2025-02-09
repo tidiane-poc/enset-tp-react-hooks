@@ -1,14 +1,11 @@
 import React, { useContext } from 'react';
-import {LanguageContext, ThemeContext} from '../App';
+import {ThemeContext} from '../context';
 import useProductSearch from '../hooks/useProductSearch';
+import Translate from "./Translate";
 
 const ProductList = ({query}) => {
   const { isDarkTheme } = useContext(ThemeContext);
-  const { lang } = useContext(LanguageContext);
   const btnClassName = isDarkTheme ? 'bg-dark text-light border border-light' : 'bg-light text-dark border border-dark';
-
-  // TODO: Exercice 2.1 - Utiliser le LanguageContext pour les traductions
-
   const {
     products, 
     loading, 
@@ -25,7 +22,7 @@ const ProductList = ({query}) => {
   if (loading) return (
     <div className="text-center my-4">
       <div className="spinner-border" role="status">
-        <span className="visually-hidden">Chargement...</span>
+        <span className="visually-hidden"><Translate msg="LOADING" /> ...</span>
       </div>
     </div>
   );
@@ -47,7 +44,7 @@ const ProductList = ({query}) => {
                           : 'bg-light text-dark border border-dark'
                   }`}
               >
-                  Recharger
+                    <Translate msg={'REFRESH'}/>
               </button>
           </div>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pt-3">
@@ -64,7 +61,7 @@ const ProductList = ({query}) => {
                     <h5 className="card-title">{product.title}</h5>
                     <p className="card-text">{product.description}</p>
                     <p className="card-text">
-                      <strong>Prix: </strong>
+                      <strong><Translate msg="PRICE" />: </strong>
                       {product.price}€
                     </p>
                   </div>
@@ -76,17 +73,17 @@ const ProductList = ({query}) => {
           <ul className="pagination justify-content-center">
             <li className="page-item">
               <button className={`page-link ${btnClassName}`} onClick={previousPage}>
-                Précédent
+                <Translate msg="PREVIOUS" />
               </button>
             </li>
             <li className="page-item">
             <span className={`page-link ${btnClassName}`}>
-              Page {(currentPage + 1)} sur {totalPages}
+              Page {(currentPage + 1)} <Translate msg="OF" /> {totalPages}
             </span>
             </li>
             <li className="page-item">
               <button className={`page-link ${btnClassName}`} onClick={nextPage}>
-                Suivant
+                <Translate msg="NEXT" />
               </button>
             </li>
           </ul>
