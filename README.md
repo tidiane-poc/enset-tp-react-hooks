@@ -99,7 +99,7 @@ Expliquez votre solution ici
 ### Pagination
 ![pagination](public/images/pagination.png)
 ### Pagination et Query
-![pagination et query](public/images/pagination_et_query.png)
+![pagination et query](public/images/pagination_query.png)
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
